@@ -78,10 +78,8 @@ export default {
           email: formData.value.email,
           password: formData.value.password,
         };
-        console.log('Credentials:', credentials);
 
-        await authStore.register(credentials, (user) => {
-          console.log('Successfully registered user:', user);
+        await authStore.register(credentials, () => {
           router.push({ name: 'signIn' });
         });
       } catch (error) {
