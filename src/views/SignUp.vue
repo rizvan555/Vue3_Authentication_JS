@@ -58,6 +58,7 @@
 <script>
 import { ref } from 'vue';
 import { useAuthStore } from '../stores/modules/auth';
+import { setItem } from '@/helper/persistanceStorage';
 import router from '../router';
 
 export default {
@@ -79,7 +80,8 @@ export default {
           password: formData.value.password,
         };
 
-        await authStore.register(credentials, () => {
+        await authStore.register(credentials, (response) => {
+          setItem('token', response.data.user.token);
           router.push({ name: 'signIn' });
         });
       } catch (error) {

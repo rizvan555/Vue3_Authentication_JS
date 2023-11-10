@@ -22,7 +22,7 @@ export const useAuthStore = defineStore({
               this.registerSuccess(response.data.user);
               resolve(response);
               if (onSuccess) {
-                onSuccess(response.data.user);
+                onSuccess(response);
               }
             })
             .catch((error) => {
