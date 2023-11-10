@@ -1,12 +1,36 @@
 <template>
-  <div class="flex flex-col justify-center items-center">
-    <h1 class="flex justify-center text-2xl my-10">Sign In</h1>
-    <div class="flex justify-center gap-2 mb-4">
-      <input type="text" placeholder="Email" class="border p-2" />
-      <input type="password" placeholder="Password" class="border p-2" />
-    </div>
-    <div>
-      <button @click="" class="border px-4 py-1">Signin</button>
+  <div class="auth-page">
+    <div class="container page">
+      <div class="row">
+        <div class="flex flex-col gap-2 col-md-6 offset-md-3 col-xs-12">
+          <h1 class="text-xs-center text-center text-2xl my-6 font-bold">
+            Sign In
+          </h1>
+
+          <form @submit.prevent="onSubmit" class="flex flex-col gap-3">
+            <fieldset class="form-group">
+              <input
+                class="form-control form-control-lg"
+                type="text"
+                placeholder="Email"
+              />
+            </fieldset>
+            <fieldset class="form-group">
+              <input
+                class="form-control form-control-lg"
+                type="password"
+                placeholder="Password"
+              />
+            </fieldset>
+            <button
+              class="btn btn-lg btn-primary pull-xs-right"
+              :disabled="isSubmitting"
+            >
+              Sign In
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </template>

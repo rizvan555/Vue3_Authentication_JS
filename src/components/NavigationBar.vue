@@ -1,7 +1,12 @@
 <template>
   <div class="flex justify-center items-center gap-2">
     <div class="flex" v-for="nav in allNavs.navs">
-      <a :href="nav.path"> {{ nav.name }} </a>
+      <a
+        :href="nav.path"
+        class="bg-red-500 px-2 py-1 font-bold text-white active:scale-95 transition-all"
+      >
+        {{ nav.name }}
+      </a>
     </div>
   </div>
 </template>
