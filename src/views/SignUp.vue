@@ -58,6 +58,7 @@
 <script>
 import { ref } from 'vue';
 import { useAuthStore } from '../stores/modules/auth';
+import router from '../router';
 
 export default {
   name: 'McvRegister',
@@ -81,6 +82,7 @@ export default {
 
         await authStore.register(credentials, (user) => {
           console.log('Successfully registered user:', user);
+          router.push({ name: 'signIn' });
         });
       } catch (error) {
         console.error('Registration Error:', error);
