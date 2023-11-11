@@ -1,5 +1,3 @@
-import NavigationBar from './components/navigationBar.vue';
-
 <template>
   <div>
     <navigation-bar />

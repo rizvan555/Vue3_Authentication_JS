@@ -13,39 +13,33 @@ export const useAuthStore = defineStore({
   // Actions
   actions: {
     async register(credentials, onSuccess) {
-      return new Promise((resolve, reject) => {
-        try {
-          this.registerStart();
-          authApi
-            .register(credentials)
-            .then((response) => {
-              this.registerSuccess(response.data.user);
-              resolve(response);
-              if (onSuccess) {
-                onSuccess(response);
-              }
-            })
-            .catch((error) => {
-              this.registerFailure(error.response.data.errors);
-
-              console.error('Validation Errors:', error.response.data.errors);
-              reject(error);
-            });
-        } catch (error) {
-          reject(error);
+      try {
+        this.registerStart();
+        const response = await authApi.register(credentials);
+        this.registerSuccess(response.data.user);
+        if (onSuccess) {
+          onSuccess(response);
         }
-      });
+        return response;
+      } catch (error) {
+        this.registerFailure(error.response.data.errors);
+        console.error('Full Server Response:', error.response);
+        console.error('Validation Errors:', error.response.data.errors);
+        throw error;
+      }
     },
 
     registerStart() {
       this.isSubmitting = true;
       this.validationErrors = null;
     },
+
     registerSuccess(user) {
       this.isSubmitting = false;
       this.currentUser = user;
       this.isLoggedIn = true;
     },
+
     registerFailure(errors) {
       this.isSubmitting = false;
       this.validationErrors = errors;
