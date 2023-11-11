@@ -4,7 +4,7 @@
       <div class="row">
         <div class="flex flex-col gap-2 col-md-6 offset-md-3 col-xs-12">
           <h1 class="text-xs-center text-center text-2xl my-6 font-bold">
-            Sign In
+            LOGIN
           </h1>
           <p class="text-xs-center">
             <router-link :to="{ name: 'signUp' }">
@@ -44,7 +44,7 @@
               type="submit"
               class="btn btn-lg btn-primary pull-xs-right bg-blue-500"
             >
-              Sign In
+              LOGIN
             </button>
           </form>
         </div>
