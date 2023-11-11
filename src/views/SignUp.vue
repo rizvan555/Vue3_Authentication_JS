@@ -8,7 +8,7 @@
           </h1>
           <p class="text-xs-center">
             <router-link :to="{ name: 'signIn' }">
-              Need an account?
+              Have an account?
             </router-link>
           </p>
           <mcv-validation-errors
