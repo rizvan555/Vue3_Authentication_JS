@@ -76,6 +76,7 @@ import { setItem } from '@/helper/persistanceStorage';
 import router from '../router';
 import McvValidationErrors from '@/components/ValidationErrors.vue';
 import * as Yup from 'yup';
+import bcrypt from 'bcryptjs';
 
 export default {
   name: 'McvRegister',
@@ -110,7 +111,11 @@ export default {
     const onSubmit = async () => {
       try {
         await schema.validate(formData.value, { abortEarly: false });
-        await authStore.register(formData.value);
+        const hashedPassword = await bcrypt.hash(formData.value.password, 6);
+        await authStore.register({
+          ...formData.value,
+          password: hashedPassword,
+        });
         setItem('JWT', authStore.currentUser.token);
         router.push({ name: 'signIn' });
       } catch (error) {
