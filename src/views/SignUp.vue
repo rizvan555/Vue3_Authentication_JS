@@ -111,7 +111,7 @@ export default {
     const onSubmit = async () => {
       try {
         await schema.validate(formData.value, { abortEarly: false });
-        const hashedPassword = await bcrypt.hash(formData.value.password, 6);
+        const hashedPassword = await bcrypt.hash(formData.value.password, 10);
         await authStore.register({
           ...formData.value,
           password: hashedPassword,
