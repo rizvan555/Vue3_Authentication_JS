@@ -1,11 +1,11 @@
 import axios from './axios';
 
 const register = (credentials) => {
-  return axios.post('/users', { user: credentials });
+  return axios.post('/register', credentials);
 };
 
 const login = (credentials) => {
-  return axios.post('/users/login', { user: credentials });
+  return axios.post('/login', credentials);
 };
 
 export default {

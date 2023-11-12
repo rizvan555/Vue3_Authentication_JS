@@ -23,7 +23,7 @@ export const useAuthStore = defineStore({
         return response;
       } catch (error) {
         this.registerFailure(error.response.data.errors);
-        console.error('Full Server Response:', error.response);
+        console.error('Full Server Response:', error.response.config.data);
         console.error('Validation Errors:', error.response.data.errors);
         throw error;
       }
