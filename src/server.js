@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
+const { default: User } = require('./models/user.model');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,13 +14,6 @@ app.use(express.json());
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-});
-
-// User Model
-const User = mongoose.model('User', {
-  username: String,
-  email: String,
-  password: String,
 });
 
 // Register Route
@@ -52,7 +46,7 @@ app.post('/login', async (req, res) => {
     if (!isPasswordValid) {
       return res.status(401).json({ error: 'Invalid credentials' });
     }
-    const token = jwt.sign({ userId: user._id }, 'secretkey', {
+    const token = jwt.sign({ userId: user._id }, 'secretKey', {
       expiresIn: '1h',
     });
     res.status(200).json({ token });

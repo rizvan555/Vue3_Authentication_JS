@@ -11,10 +11,7 @@
               Have an account?
             </router-link>
           </p>
-          <mcv-validation-errors
-            v-if="validationErrors"
-            :validation-errors="validationErrors"
-          />
+
           <form @submit.prevent="onSubmit" class="flex flex-col gap-3">
             <fieldset class="form-group">
               <input
