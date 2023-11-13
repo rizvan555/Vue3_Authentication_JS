@@ -33,6 +33,7 @@
                 :class="{ 'border-red-500': errors.email }"
                 type="text"
                 placeholder="Email"
+                autocomplete="email"
                 @input="clearError('email')"
               />
               <div v-if="errors.email" class="text-red-500">
@@ -46,6 +47,7 @@
                 :class="{ 'border-red-500': errors.password }"
                 type="password"
                 placeholder="Password"
+                autocomplete="current-password"
                 @input="clearError('password')"
               />
               <div v-if="errors.password" class="text-red-500">

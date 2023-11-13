@@ -17,7 +17,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 });
 
 // Register Route
-app.post('/register', async (req, res) => {
+app.post('/signUp', async (req, res) => {
   try {
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const user = new User({
@@ -33,7 +33,7 @@ app.post('/register', async (req, res) => {
 });
 
 // Login Route
-app.post('/login', async (req, res) => {
+app.post('/signIn', async (req, res) => {
   try {
     const user = await User.findOne({ email: req.body.email });
     if (!user) {
