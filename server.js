@@ -1,9 +1,8 @@
-const express = require('express');
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-const cors = require('cors');
-const { default: User } = require('./models/user.model');
+import express from 'express';
+import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import cors from 'cors';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -11,10 +10,21 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+mongoose.connect(
+  'mongodb+srv://rizvan555:rizvan-555@cluster0.av7lucl.mongodb.net/?retryWrites=true&w=majority',
+  {
+    dbName: 'vueDB',
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
+
+const UserSchema = new mongoose.Schema({
+  username: { type: String, required: true },
+  email: { type: String, unique: true, required: true },
+  password: { type: String, required: true },
 });
+const User = mongoose.model('User', UserSchema);
 
 // Register Route
 app.post('/signUp', async (req, res) => {
